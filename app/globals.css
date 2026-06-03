@@ -1,0 +1,757 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Updated to Tailwind v4 format with @theme and moved design tokens outside @layer base */
+
+:root {
+  /* shadcn design tokens - Updated for Eisai branding */
+  --background: oklch(0.973 0.0133 286.1503);
+  --foreground: oklch(0.3015 0.0572 282.4176);
+  --card: oklch(1.0 0 0);
+  --card-foreground: oklch(0.3015 0.0572 282.4176);
+  --popover: oklch(1.0 0 0);
+  --popover-foreground: oklch(0.3015 0.0572 282.4176);
+  --primary: oklch(0.52 0.14 350);
+  --primary-foreground: oklch(1.0 0 0);
+  --secondary: oklch(0.9174 0.0435 350);
+  --secondary-foreground: oklch(0.52 0.14 350);
+  --muted: oklch(0.958 0.0133 286.1454);
+  --muted-foreground: oklch(0.5426 0.0465 284.7435);
+  --accent: oklch(0.9221 0.0373 262.141);
+  --accent-foreground: oklch(0.3015 0.0572 282.4176);
+  --destructive: oklch(0.6861 0.2061 14.9941);
+  --destructive-foreground: oklch(1.0 0 0);
+  --border: oklch(0.9115 0.0216 285.9625);
+  --input: oklch(0.9115 0.0216 285.9625);
+  --ring: oklch(0.52 0.14 350);
+  --chart-1: oklch(0.52 0.14 350);
+  --chart-2: oklch(0.5731 0.13 350);
+  --chart-3: oklch(0.6231 0.12 350);
+  --chart-4: oklch(0.7231 0.11 350);
+  --chart-5: oklch(0.3731 0.15 350);
+  --radius: 0.5rem;
+  --sidebar-background: hsl(0 0% 98%);
+  --sidebar-foreground: oklch(0.3015 0.0572 282.4176);
+  --sidebar-primary: oklch(0.52 0.14 350);
+  --sidebar-primary-foreground: oklch(1.0 0 0);
+  --sidebar-accent: oklch(0.9221 0.0373 262.141);
+  --sidebar-accent-foreground: oklch(0.3015 0.0572 282.4176);
+  --sidebar-border: oklch(0.9115 0.0216 285.9625);
+  --sidebar-ring: oklch(0.52 0.14 350);
+
+  /* App-specific color variables - Updated to Eisai Blue */
+  --app-primary: #C2547D;
+  --app-primary-hover: #A8436A;
+  --app-primary-rgb: 194, 84, 125;
+  --app-primary-light: #D885A4;
+  --card-header-text: #000000;
+
+  /* Hero and UI specific colors - Updated to Eisai palette */
+  --hero-bg-primary: #F6E1EA;
+  --hero-text-primary: #1a202c;
+  --hero-text-secondary: #2d3748;
+  --icon-bg-primary: rgba(194, 84, 125, 0.1);
+  --icon-bg-secondary: rgba(194, 84, 125, 0.15);
+
+  /* Banner specific colors - Updated to Eisai blue tints */
+  --banner-bg-start: rgba(194, 84, 125, 0.05);
+  --banner-bg-end: rgba(194, 84, 125, 0.1);
+  --banner-border: rgba(194, 84, 125, 0.2);
+
+  /* Chip/Badge specific colors - Updated to Eisai palette */
+  --chip-bg-primary: rgba(194, 84, 125, 0.1);
+  --chip-text-primary: #A8436A;
+  --chip-border-primary: rgba(194, 84, 125, 0.2);
+
+  /* AI/Analysis specific colors - Updated to Eisai gradient */
+  --ai-button-bg-start: var(--app-primary);
+  --ai-button-bg-end: var(--app-primary-hover);
+  --ai-button-hover-start: var(--app-primary-hover);
+  --ai-button-hover-end: #003d66;
+  --ai-container-bg-start: var(--banner-bg-start);
+  --ai-container-bg-end: var(--banner-bg-end);
+  --ai-container-border: var(--chip-border-primary);
+  --ai-loading-border: var(--app-primary);
+
+  /* New Design Palette - Updated to Eisai Colors */
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --text-muted: #a0aec0;
+  --bg-primary: #ffffff;
+  --bg-secondary: rgba(194, 84, 125, 0.03);
+  --border-color: #e2e8f0;
+  --accent-primary: #C2547D;
+  --accent-secondary: #A8436A;
+  --status-success: #38a169;
+  --status-warning: #d69e2e;
+  --status-error: #e53e3e;
+  --status-info: #3182ce;
+  --sidebar: oklch(0.958 0.0133 286.1454);
+  --shadow-x: 0px;
+  --shadow-y: 1px;
+  --shadow-blur: 2px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.05;
+  --shadow-color: #000000;
+
+    /* Chart and data visualization colors */
+    --chart-blue: #3b82f6;
+    --chart-red: #ef4444;
+    --chart-orange: #fb923c;
+    --chart-yellow: #fcd34d;
+    --chart-purple: #8b5cf6;
+    --chart-pink: #ec4899;
+    
+    /* Metric-specific semantic colors */
+    --metric-water: #3b82f6;
+    --metric-blood-primary: #dc2626;
+    --metric-blood-secondary: #ef4444;
+    --metric-nutrition-fat: #f59e0b;
+    --metric-nutrition-diet: #fb923c;
+    --metric-hormones: #ec4899;
+    --metric-hormones-secondary: #be185d;
+    --metric-sleep: #8b5cf6;
+    --metric-muscle: #7c3aed;
+    --metric-vitamins-green: #10b981;
+    --metric-vitamins-yellow: #fbbf24;
+    --metric-minerals: #6b7280;
+    --metric-body-composition: #059669;
+    --metric-cardiovascular: #06b6d4;
+    --metric-activity: #14b8a6;
+    --metric-nutrition-carbs: #16a34a;
+    --metric-blood-pressure: #7c2d12;
+    --metric-lab-panel: #2563eb;
+    
+    /* Body diagram colors */
+    --body-skin: #fef3e8;
+    --body-outline: #d4a574;
+    --body-accent: #fca5a5;
+    
+    /* Profile and overlay colors */
+    --profile-bg: #F8FAFB;
+
+    /* Hero gradient colors */
+    --hero-teal: #41B6B4;
+    --hero-purple: #A855A5;
+    --hero-indigo: #6366F1;
+    
+    /* Opacity scale tokens */
+    --opacity-0: 0;
+    --opacity-5: 0.05;
+    --opacity-10: 0.1;
+    --opacity-12: 0.12;
+    --opacity-14: 0.14;
+    --opacity-15: 0.15;
+    --opacity-18: 0.18;
+    --opacity-20: 0.2;
+    --opacity-25: 0.25;
+    --opacity-30: 0.3;
+    --opacity-40: 0.4;
+    --opacity-50: 0.5;
+    --opacity-60: 0.6;
+    --opacity-70: 0.7;
+    --opacity-80: 0.8;
+    --opacity-90: 0.9;
+    --opacity-95: 0.95;
+    --opacity-100: 1;
+    
+    /* White alpha tokens */
+    --white-alpha-10: rgba(255, 255, 255, 0.1);
+    --white-alpha-12: rgba(255, 255, 255, 0.12);
+    --white-alpha-14: rgba(255, 255, 255, 0.14);
+    --white-alpha-15: rgba(255, 255, 255, 0.15);
+    --white-alpha-18: rgba(255, 255, 255, 0.18);
+    --white-alpha-20: rgba(255, 255, 255, 0.2);
+    --white-alpha-25: rgba(255, 255, 255, 0.25);
+    --white-alpha-40: rgba(255, 255, 255, 0.4);
+    --white-alpha-70: rgba(255, 255, 255, 0.7);
+    --white-alpha-90: rgba(255, 255, 255, 0.9);
+    --white-alpha-95: rgba(255, 255, 255, 0.95);
+    
+    /* Black alpha tokens */
+    --black-alpha-5: rgba(0, 0, 0, 0.05);
+    --black-alpha-10: rgba(0, 0, 0, 0.1);
+    --black-alpha-20: rgba(0, 0, 0, 0.2);
+    --black-alpha-30: rgba(0, 0, 0, 0.3);
+    --black-alpha-50: rgba(0, 0, 0, 0.5);
+    --black-alpha-80: rgba(0, 0, 0, 0.8);
+    
+    /* Primary color alpha tokens */
+    --primary-alpha-5: rgba(var(--app-primary-rgb), 0.05);
+    --primary-alpha-8: rgba(var(--app-primary-rgb), 0.08);
+    --primary-alpha-10: rgba(var(--app-primary-rgb), 0.1);
+    --primary-alpha-15: rgba(var(--app-primary-rgb), 0.15);
+    --primary-alpha-20: rgba(var(--app-primary-rgb), 0.2);
+    --primary-alpha-30: rgba(var(--app-primary-rgb), 0.3);
+    --primary-alpha-40: rgba(var(--app-primary-rgb), 0.4);
+    --primary-alpha-50: rgba(var(--app-primary-rgb), 0.5);
+    
+    /* Overlay and surface tokens */
+    --overlay-bg: rgba(255, 255, 255, 0.9);
+    --overlay-bg-heavy: rgba(255, 255, 255, 0.95);
+    --overlay-bg-light: rgba(255, 255, 255, 0.7);
+    --overlay-border: rgba(255, 255, 255, 0.2);
+    --overlay-border-light: rgba(255, 255, 255, 0.1);
+    --surface-elevated: rgba(255, 255, 255, 0.95);
+    --surface-glass: rgba(255, 255, 255, 0.8);
+    
+    /* Blue color alpha tokens */
+    --blue-alpha-15: rgba(59, 130, 246, 0.15);
+    --blue-alpha-30: rgba(59, 130, 246, 0.3);
+    --blue-alpha-40: rgba(59, 130, 246, 0.4);
+    --blue-alpha-60: rgba(59, 130, 246, 0.6);
+    
+    /* Red color alpha tokens */
+    --red-alpha-25: rgba(239, 68, 68, 0.25);
+    --red-alpha-30: rgba(239, 68, 68, 0.3);
+    --red-alpha-40: rgba(239, 68, 68, 0.4);
+    
+    /* Orange/Yellow pain intensity tokens */
+    --orange-alpha-25: rgba(251, 146, 60, 0.25);
+    --yellow-alpha-25: rgba(250, 204, 21, 0.25);
+    
+    /* Gradient color alpha tokens */
+    --gradient-indigo-alpha: rgba(99, 102, 241, 0.22);
+    --gradient-purple-alpha: rgba(139, 92, 246, 0.20);
+    --gradient-purple-light: rgba(139, 92, 246, 0.15);
+    --gradient-pink-alpha: rgba(236, 72, 153, 0.18);
+    --gradient-pink-light: rgba(236, 72, 153, 0.15);
+    --gradient-blue-alpha: rgba(59, 130, 246, 0.21);
+    --gradient-blue-light: rgba(59, 130, 246, 0.15);
+    --gradient-teal-alpha: rgba(16, 185, 129, 0.19);
+    
+    /* Shadow color alpha tokens */
+    --shadow-indigo-alpha: rgba(99, 102, 241, 0.18);
+    --shadow-purple-alpha: rgba(139, 92, 246, 0.12);
+
+    /* Additional utility colors */
+    --orange-primary: #f15223;
+    --beige-bg: #F5F1EB;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-300: #d1d5db;
+    --gray-200: #e5e7eb;
+    --gray-100: #f3f4f6;
+    --slate-400: #94a3b8;
+    --slate-600: #475569;
+    --slate-700: #334155;
+
+    /* Design System Tokens - Text Colors */
+    --ds-text-default: #ffffff;
+    --ds-text-primary: #1f2937;
+    --ds-text-secondary: #6b7280;
+    --ds-text-muted: #9ca3af;
+    --ds-text-disabled: #d1d5db;
+    --ds-text-inverse: #ffffff;
+    --ds-text-link: #3b82f6;
+    --ds-text-link-hover: #2563eb;
+    
+    /* Design System Tokens - Surface Colors */
+    --ds-surface-default: #ffffff;
+    --ds-surface-primary: #ffffff;
+    --ds-surface-secondary: #f9fafb;
+    --ds-surface-tertiary: #f3f4f6;
+    --ds-surface-inverse: #111827;
+    --ds-surface-overlay: #ffffff;
+    --ds-surface-elevated: #ffffff;
+    --ds-surface-sunken: #f9fafb;
+    
+    /* Design System Tokens - Border Colors */
+    --ds-border-default: #e5e7eb;
+    --ds-border-subtle: #f3f4f6;
+    --ds-border-strong: #d1d5db;
+    --ds-border-inverse: #374151;
+    --ds-border-focus: #3b82f6;
+    --ds-border-error: #ef4444;
+    --ds-border-warning: #f59e0b;
+    --ds-border-success: #10b981;
+    
+    /* Design System Tokens - Focus Ring */
+    --ds-focus-ring: #3b82f6;
+    --ds-focus-ring-offset: 2px;
+    --ds-focus-ring-width: 2px;
+    
+    /* Design System Tokens - Status Colors */
+    --ds-status-error: #ef4444;
+    --ds-status-error-bg: #fef2f2;
+    --ds-status-error-text: #dc2626;
+    --ds-status-warning: #f59e0b;
+    --ds-status-warning-bg: #fffbeb;
+    --ds-status-warning-text: #d97706;
+    --ds-status-success: #10b981;
+    --ds-status-success-bg: #ecfdf5;
+    --ds-status-success-text: #059669;
+    --ds-status-info: #3b82f6;
+    --ds-status-info-bg: #eff6ff;
+    --ds-status-info-text: #2563eb;
+    
+    /* Design System Tokens - Interactive Colors */
+    --ds-interactive-primary: #3b82f6;
+    --ds-interactive-primary-hover: #2563eb;
+    --ds-interactive-primary-active: #1d4ed8;
+    --ds-interactive-secondary: #6b7280;
+    --ds-interactive-secondary-hover: #4b5563;
+    --ds-interactive-disabled: #d1d5db;
+    
+    /* Design System Tokens - Semantic UI Colors */
+    --ds-blue-50: #eff6ff;
+    --ds-blue-100: #dbeafe;
+    --ds-blue-600: #2563eb;
+    --ds-blue-800: #1e40af;
+    --ds-green-50: #ecfdf5;
+    --ds-green-100: #d1fae5;
+    --ds-green-600: #059669;
+    --ds-green-800: #065f46;
+    --ds-yellow-50: #fffbeb;
+    --ds-yellow-100: #fef3c7;
+    --ds-yellow-600: #d97706;
+    --ds-yellow-800: #92400e;
+    --ds-red-50: #fef2f2;
+    --ds-red-100: #fee2e2;
+    --ds-red-600: #dc2626;
+    --ds-red-800: #991b1b;
+    --ds-orange-50: #fff7ed;
+    --ds-orange-100: #ffedd5;
+    --ds-orange-600: #ea580c;
+    --ds-orange-800: #9a3412;
+    --ds-purple-50: #faf5ff;
+    --ds-purple-100: #f3e8ff;
+    --ds-purple-600: #9333ea;
+    --ds-purple-800: #6b21a8;
+    --ds-gray-50: #f9fafb;
+    --ds-gray-100: #f3f4f6;
+    --ds-gray-200: #e5e7eb;
+    --ds-gray-300: #d1d5db;
+    --ds-gray-400: #9ca3af;
+    --ds-gray-500: #6b7280;
+    --ds-gray-600: #4b5563;
+    --ds-gray-700: #374151;
+    --ds-gray-800: #1f2937;
+    --ds-gray-900: #111827;
+    
+    /* Design System Tokens - Shadow */
+    --ds-shadow-default: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --ds-shadow-elevated: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    /* Design System Tokens - Gradients */
+    --ds-gradient-primary: linear-gradient(135deg, #9333ea, #3b82f6);
+    --ds-gradient-success: linear-gradient(135deg, #10b981, #059669);
+    --ds-gradient-warning: linear-gradient(135deg, #f59e0b, #d97706);
+    --ds-gradient-error: linear-gradient(135deg, #ef4444, #dc2626);
+
+    /* Design System Tokens - Spacing */
+    --ds-space-xs: 0.25rem;
+    --ds-space-sm: 0.5rem;
+    --ds-space-md: 0.75rem;
+    --ds-space-lg: 1rem;
+    --ds-space-xl: 1.25rem;
+    --ds-space-2xl: 1.5rem;
+    --ds-space-3xl: 2rem;
+    --ds-space-4xl: 2.5rem;
+    --ds-space-5xl: 3rem;
+
+    /* Design System Tokens - Layout */
+    --ds-card-padding: 1rem;
+    --ds-card-padding-sm: 0.75rem;
+    --ds-card-padding-lg: 1.5rem;
+    --ds-container-padding: 1rem;
+    --ds-section-gap: 1.5rem;
+    --ds-item-gap: 0.5rem;
+    --ds-header-height: 4rem;
+    --ds-nav-height: 5rem;
+
+    /* Design System Tokens - Border Radius */
+    --ds-radius-xs: 0.125rem;
+    --ds-radius-sm: 0.25rem;
+    --ds-radius-md: 0.375rem;
+    --ds-radius-lg: 0.5rem;
+    --ds-radius-xl: 0.75rem;
+    --ds-radius-2xl: 1rem;
+    --ds-radius-3xl: 1.5rem;
+    --ds-radius-full: 9999px;
+    
+    /* Design System Tokens - Motion & Transitions */
+    --ds-transition-instant: 0ms ease-out;
+    --ds-transition-fast: 150ms ease-out;
+    --ds-transition-normal: 300ms ease-out;
+    --ds-transition-slow: 500ms ease-out;
+    --ds-transition-slower: 750ms ease-out;
+    
+    /* Easing Functions */
+    --ds-ease-linear: linear;
+    --ds-ease-in: ease-in;
+    --ds-ease-out: ease-out;
+    --ds-ease-in-out: ease-in-out;
+    --ds-ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ds-ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ds-ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ds-ease-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+    
+    /* Combined Motion Tokens */
+    --ds-motion-instant: var(--ds-transition-instant);
+    --ds-motion-fast: var(--ds-transition-fast);
+    --ds-motion-normal: var(--ds-transition-normal);
+    --ds-motion-slow: var(--ds-transition-slow);
+    --ds-motion-slower: var(--ds-transition-slower);
+    
+    /* Spring Animations */
+    --ds-motion-spring-fast: 150ms var(--ds-ease-spring);
+    --ds-motion-spring-normal: 300ms var(--ds-ease-spring);
+    --ds-motion-spring-slow: 500ms var(--ds-ease-spring);
+    
+    /* Bounce Animations */
+    --ds-motion-bounce-fast: 150ms var(--ds-ease-bounce);
+    --ds-motion-bounce-normal: 300ms var(--ds-ease-bounce);
+    --ds-motion-bounce-slow: 500ms var(--ds-ease-bounce);
+    
+    /* Smooth Animations */
+    --ds-motion-smooth-fast: 150ms var(--ds-ease-smooth);
+    --ds-motion-smooth-normal: 300ms var(--ds-ease-smooth);
+    --ds-motion-smooth-slow: 500ms var(--ds-ease-smooth);
+    
+    /* Healthcare-specific motion presets */
+    --ds-motion-alert: var(--ds-motion-fast);
+    --ds-motion-interaction: var(--ds-motion-normal);
+    --ds-motion-modal: var(--ds-motion-smooth-normal);
+    --ds-motion-page: var(--ds-motion-smooth-slow);
+    --ds-motion-data: var(--ds-motion-slow);
+}
+
+.dark {
+  /* shadcn design tokens - wrapped channel values in hsl() */
+  --background: oklch(0.1743 0.0227 283.7998);
+  --foreground: oklch(0.9185 0.0257 285.8834);
+  --card: oklch(0.2284 0.0384 282.9324);
+  --card-foreground: oklch(0.9185 0.0257 285.8834);
+  --popover: oklch(0.2284 0.0384 282.9324);
+  --popover-foreground: oklch(0.9185 0.0257 285.8834);
+  --primary: oklch(0.52 0.14 350);
+  --primary-foreground: oklch(0.1743 0.0227 283.7998);
+  --secondary: oklch(0.3139 0.0736 350);
+  --secondary-foreground: oklch(0.8367 0.0849 285.9111);
+  --muted: oklch(0.271 0.0621 281.4377);
+  --muted-foreground: oklch(0.7166 0.0462 285.1741);
+  --accent: oklch(0.3354 0.0828 280.9705);
+  --accent-foreground: oklch(0.9185 0.0257 285.8834);
+  --destructive: oklch(0.6861 0.2061 14.9941);
+  --destructive-foreground: oklch(1.0 0 0);
+  --border: oklch(0.3261 0.0597 282.5832);
+  --input: oklch(0.3261 0.0597 282.5832);
+  --ring: oklch(0.52 0.14 350);
+  --chart-1: oklch(0.52 0.14 350);
+  --chart-2: oklch(0.6382 0.1047 350);
+  --chart-3: oklch(0.7482 0.1235 350);
+  --chart-4: oklch(0.7124 0.0977 350);
+  --chart-5: oklch(0.4731 0.1753 350);
+  --sidebar-background: hsl(240 5.9% 10%);
+  --sidebar-foreground: oklch(0.9185 0.0257 285.8834);
+  --sidebar-primary: oklch(0.52 0.14 350);
+  --sidebar-primary-foreground: oklch(0.1743 0.0227 283.7998);
+  --sidebar-accent: oklch(0.3354 0.0828 280.9705);
+  --sidebar-accent-foreground: oklch(0.9185 0.0257 285.8834);
+  --sidebar-border: oklch(0.3261 0.0597 282.5832);
+  --sidebar-ring: oklch(0.52 0.14 350);
+
+  /* Dark mode background colors - Eisai theme */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: rgba(194, 84, 125, 0.05);
+
+  /* Dark mode text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #888888;
+
+  /* Dark mode hero and UI colors - Eisai palette */
+  --hero-bg-primary: #003d66;
+  --hero-text-primary: #ffffff;
+  --hero-text-secondary: #e2e8f0;
+  --icon-bg-primary: rgba(194, 84, 125, 0.2);
+  --icon-bg-secondary: rgba(194, 84, 125, 0.25);
+
+  /* Dark mode banner colors - Eisai blue */
+  --banner-bg-start: rgba(194, 84, 125, 0.08);
+  --banner-bg-end: rgba(194, 84, 125, 0.12);
+  --banner-border: rgba(194, 84, 125, 0.3);
+
+  /* Dark mode chip/badge colors - Eisai palette */
+  --chip-bg-primary: rgba(194, 84, 125, 0.2);
+  --chip-text-primary: #D885A4;
+  --chip-border-primary: rgba(194, 84, 125, 0.3);
+
+  /* Dark mode AI/Analysis colors - Eisai gradient */
+  --ai-button-bg-start: #D885A4;
+  --ai-button-bg-end: #003d66;
+  --ai-button-hover-start: #003d66;
+  --ai-button-hover-end: #002244;
+  --ai-container-bg-start: rgba(194, 84, 125, 0.08);
+  --ai-container-bg-end: rgba(194, 84, 125, 0.12);
+  --ai-container-border: rgba(194, 84, 125, 0.3);
+  --ai-loading-border: #D885A4;
+  --sidebar: oklch(0.2284 0.0384 282.9324);
+  --shadow-x: 0px;
+  --shadow-y: 1px;
+  --shadow-blur: 2px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.05;
+  --shadow-color: #000000;
+}
+
+/* Material Symbols styling */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  vertical-align: middle;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tailwind v4 @theme configuration */
+@theme {
+  /* Container settings */
+  --container-center: true;
+  --container-padding: 2rem;
+  --container-screen-2xl: 1400px;
+
+  /* Font families */
+  --font-manrope: var(--font-manrope), system-ui, sans-serif;
+
+  /* Semantic color tokens using CSS variables */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-sidebar: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Border radius tokens */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Animation keyframes */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Hide scrollbars for webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars for Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbars for Internet Explorer and Edge */
+* {
+  -ms-overflow-style: none;
+}
+
+/* Ensure body and html can still scroll */
+html,
+body {
+  overflow: auto;
+}
+
+/* Updated base styles for Tailwind v4 */
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom animation for slideDown */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 500px;
+  }
+}
+
+/* Utility class for text balance */
+.text-balance {
+  text-wrap: balance;
+}
+
+@theme inline {
+  --font-sans: var(--v0-font-geist);
+  --font-mono: var(--v0-font-geist-mono);
+  --font-serif: var(--v0-font-source-serif-4);
+  /* computed shadow variables below - do not modify */
+  --shadow-2xs: var(--shadow-x) var(--shadow-y)
+    color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-xs: var(--shadow-x) var(--shadow-y) var(--shadow-blur) var(--shadow-spread)
+    color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-sm: var(--shadow-x) var(--shadow-y) calc(var(--shadow-blur) * 1.5) var(--shadow-spread)
+    color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-md: calc(var(--shadow-x) * 2) calc(var(--shadow-y) * 2) calc(var(--shadow-blur) * 3)
+    calc(var(--shadow-spread) - 1px)
+    color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-lg: calc(var(--shadow-x) * 4) calc(var(--shadow-y) * 4) calc(var(--shadow-blur) * 5)
+    calc(var(--shadow-spread) - 3px)
+    color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-xl: calc(var(--shadow-x) * 6) calc(var(--shadow-y) * 6) calc(var(--shadow-blur) * 7)
+    calc(var(--shadow-spread) - 5px)
+    color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
+  --shadow-2xl: calc(var(--shadow-x) * 8) calc(var(--shadow-y) * 8) calc(max(0px, var(--shadow-blur) * 9 - 8px))
+    calc(var(--shadow-spread) - 12px)
+    color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 250%), transparent);
+  --shadow: var(--shadow-md);
+  --color-shadow-color: var(--shadow-color);
+  --shadow-opacity: var(--shadow-opacity);
+  --shadow-spread: var(--shadow-spread);
+  --shadow-blur: var(--shadow-blur);
+  --shadow-y: var(--shadow-y);
+  --shadow-x: var(--shadow-x);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Dosage calendar day indicator dot */
+.dosage-day {
+  position: relative;
+}
+.dosage-day::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--app-primary, var(--primary));
+  pointer-events: none;
+}
+.dosage-day[data-selected-single="true"]::after {
+  background-color: white;
+}
